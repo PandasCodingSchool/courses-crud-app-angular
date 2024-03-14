@@ -1,0 +1,95 @@
+<div class="panel panel-default">  
+  <div class="panel-heading">  
+      <h1 style="text-align: center">Courses</h1><br>  
+      <div class="row" [hidden]="!deleteMessage">  
+             
+                <div class="col-sm-4"></div>  
+                <div class="col-sm-4">  
+                        <div class="alert alert-info alert-dismissible">  
+                                <button type="button" class="close" data-dismiss="alert">×</button>  
+                                <strong>Course Data Deleted</strong>  
+                        </div>  
+                </div>  
+                <div class="col-sm-4"></div>  
+        </div>             
+    </div>  
+  
+    
+  <div class="panel-body">  
+      <table  class="table table-hover table-sm" datatable   >  
+          <thead class="thead-light">  
+              <tr>  
+                  <th>Course Name</th>  
+                  <th>Course Duration</th>  
+                  <th>Course Availability</th>  
+                  <th>Action</th>  
+                
+              </tr>  
+          </thead>  
+          <tbody>  
+               <tr *ngFor="let course of coursesList ">  
+                  <td>{{course.course_name}}</td>  
+                  <td>{{course.course_email}}</td>  
+                  <td>{{course.course_branch}}</td>  
+                  <td><button (click)="deleteCourse(course.course_id)" class='btn btn-primary'><i class="fa fa-futboll-0">Delete</i></button>   
+                    <button (click)="openUpdateCourseForm(course.course_id)" class='btn btn-info'  
+                    data-toggle="modal" data-target="#myModal">Update</button>  
+                  </td>  
+                </tr>   
+          </tbody><br>  
+      </table>  
+  </div>  
+</div>   
+  
+<div class="modal" id="myModal">  
+        <div class="modal-dialog">  
+          <div class="modal-content">  
+                <form [formGroup]="courseUpdateForm"  (ngSubmit)="handleUpdateCourse(course.id)">  
+            <!-- Modal Header -->  
+            <div class="modal-header">  
+              <h4 class="modal-title" style="text-align: center">Update Course</h4>  
+                
+            </div>  
+              
+            <!-- Modal body -->  
+            <div class="modal-body" >  
+                <h1>Data</h1>
+                <!-- <div [hidden]="isupdated">  
+  
+                    <input type="hidden" class="form-control"  formControlName="student_id" [(ngModel)]="student.student_id">  
+                            <div class="form-group">  
+                                <label for="name">Student Name</label>  
+                                <input type="text" class="form-control"  formControlName="student_name" [(ngModel)]="student.student_name"  >  
+                            </div>  
+                      
+                            <div class="form-group">  
+                                <label for="name">Student Email</label>  
+                                <input type="text" class="form-control" formControlName="student_email" [(ngModel)]="student.student_email">  
+                            </div>  
+                      
+                            <div class="form-group">  
+                                <label for="name">Student Branch</label>  
+                                  <select class="form-control" formControlName="student_branch" required>                                     
+                                    <option value="B-Tech" [selected]="'B-Tech' == student.student_branch">B-Tech</option>  
+                                    <option value="BCA" [selected]="'BCA' == student.student_branch">BCA</option>  
+                                    <option value="MCA" [selected]="'MCA' == student.student_branch" >MCA</option>  
+                                    <option value="M-Tech" [selected]="'M-Tech' == student.student_branch">M-Tech</option>  
+                                  </select>                                 
+                            </div>                     
+                  </div>    
+                  <div [hidden]="!isupdated">  
+                      <h4>Student Detail Updated!</h4>  
+                  </div>           -->
+                      
+            </div>  
+              
+            <!-- Modal footer -->  
+            <div class="modal-footer" >  
+              <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>  
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>  
+            </div>  
+              
+        </form>  
+          </div>  
+        </div>  
+      </div>
